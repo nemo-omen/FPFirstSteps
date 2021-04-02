@@ -37,6 +37,8 @@ const buildDeck = (suits, ranks) => suits.flatMap(suit => ranks.map(rank => {ret
 // naive shuffle
 const shuffle = (deck) => deck.sort(() => 0.5 - Math.random());
 
+
+
 head(suits);/*?*/
 
 tail(suits);/*?*/
