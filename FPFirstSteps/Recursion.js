@@ -31,6 +31,7 @@ const recursiveEvery = (array) => length(array) === 1
 // returns permutations of two arrays
 const permuteArrays = (array1, array2) => array1.flatMap(d => array2.map(v => {return {rank: d, suit: v}}));
 
+// same as above tailored for building a deck of cards
 const buildDeck = (suits, ranks) => suits.flatMap(suit => ranks.map(rank => {return {suit: suit, rank: rank}}));
 
 const shuffle = (deck) => deck.sort(() => 0.5 - Math.random());
