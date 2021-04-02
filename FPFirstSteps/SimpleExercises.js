@@ -1,3 +1,7 @@
+export const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+
+export const ranks = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
+
 function reverseNumber(number) {
   // return number.toString();
   return number.toString().split("").reverse().join("");
@@ -69,10 +73,6 @@ console.log(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 console.log(fyShuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
 console.log(fyShuffle(["dog", "grackle", "cat", "lizard", "spider", "roly poly", "giraffe", "penguin", "human"]));
-
-const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
-
-const ranks = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
 
 console.log(fyShuffle(combineCardArrays(suits,ranks)));
 
