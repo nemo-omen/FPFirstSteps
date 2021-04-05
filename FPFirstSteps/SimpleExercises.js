@@ -1,3 +1,6 @@
+// bookmark Casey Morris's Functional JS with Es6 Recursive Patterns
+// https://www.codementor.io/@caseymorris/functional-js-with-es6-recursive-patterns-m2pv4j98d
+
 export const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 
 export const ranks = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
@@ -15,51 +18,33 @@ function shuffleString(letters) {
   return letters.split("").sort(() => 0.5 - Math.random()).join("");
 }
 
-function shuffleArray(arr) {
-  return arr.sort(() => 0.5 - Math.random());
-}
+// returns first element of an array
+const head = ([x]) => x;
 
-function fyShuffle(arr) {
-  for(var i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-  }
-  return arr;
-}
+// returns all but the first item in the array
+const tail = ([x, ...xs]) => xs; // can also be written as `tail = ([, ...xs] => xs);`
 
-function combineCardArrays(parentArray, childArray) {
-  let combined = [];
-  for(var i = 0; i < parentArray.length; i++) {
-    for(var j = 0; j < childArray.length; j++) {
-      combined.push(childArray[j] + " of " + parentArray[i]);
-    }
-  }
-  return combined;
-}
+// return if argument supplied is defined
+const def = x => typeof x !== 'undefined';
 
-function newCombiner(parentArray, childArray) {
-  const combined = [];
-  parentArray.forEach((parentElement) => {
-    childArray.forEach((childElement) => {
-      combined.push(childElement + " of " + parentElement);
-    });
-  });
-  return combined;
-}
+// sues def() to find whether undefined
+const undef = x => !def(x);
 
-function returnFirst(arr) {
-  if(arr.length === 1) {
-    return arr[0];
-  } else {
-    return returnFirst(arr[0]);
-  }
-}
+// returns a copy of an array
+const copy = array => [...array];
 
-function recursiveCombine(parentArray, childArray) {
-  
-}
+// finds the length of an array using recursion
+const length = ([x, ...xs], len = 0) => def(x) ? length(xs, len + 1) : len;
+
+// returns permutations of two arrays
+const permuteArrays = (array1, array2) => array1.flatMap(d => array2.map(v => {return {rank: d, suit: v}}));
+
+// same as above tailored for building a deck of cards
+const buildDeck = (suits, ranks) => suits.flatMap(suit => ranks.map(rank => {return {suit: suit, rank: rank}}));
+
+// naive shuffle
+const shuffle = (deck) => deck.sort(() => 0.5 - Math.random());
+
 
 
 console.log(reverseNumber(1658400));
@@ -68,14 +53,14 @@ console.log(reverseString("Hello, world!"));
 
 console.log(shuffleString("abcdefg"));
 
-console.log(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+head(suits);/*?*/
 
-console.log(fyShuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+tail(suits);/*?*/
 
-console.log(fyShuffle(["dog", "grackle", "cat", "lizard", "spider", "roly poly", "giraffe", "penguin", "human"]));
+copy(suits);/*?*/
 
-console.log(fyShuffle(combineCardArrays(suits,ranks)));
+length(suits);/*?*/
 
-console.log(fyShuffle(newCombiner(suits, ranks)));
+length(ranks);/*?*/
 
-console.log(returnFirst(suits));
+shuffle(buildDeck(suits, ranks));/*?*/
